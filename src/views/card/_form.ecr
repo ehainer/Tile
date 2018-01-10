@@ -1,0 +1,26 @@
+<%- if card.errors %>
+  <ul class="errors">
+  <%- card.errors.each do |error| %>
+    <li><%= error.to_s %></li>
+  <%- end %>
+  </ul>
+<%- end %>
+
+
+
+<%- action = (card.id ? "/cards/" + card.id.to_s : "/cards") %>
+<form action="<%= action %>" method="post">
+  <%= csrf_tag %>
+  <%- if card.id %>
+  <input type="hidden" name="_method" value="patch" />
+  <%- end %>
+
+  <div class="form-group">
+    <%= text_field(name: "title", value: card.title, placeholder: "Title", class: "form-control") -%>
+  </div>
+  <div class="form-group">
+    <%= text_area(name: "body", content: card.body, placeholder: "Body", class: "form-control", size: "30x10") -%>
+  </div>
+  <%= submit("Submit", class: "btn btn-primary btn-xs") -%>
+  <%= link_to("back", "/cards", class: "btn btn-default btn-xs") -%>
+</form>

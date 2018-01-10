@@ -1,0 +1,9 @@
+<h1>Show Card</h1>
+
+<p><%= card.title %></p>
+<p><%= card.body %></p>
+<p>
+  <%= link_to("back", "/cards", class: "btn btn-success btn-xs") -%>
+  <%= link_to("edit", "/cards/#{card.id}/edit", class: "btn btn-success btn-xs") -%>
+  <%= link_to("delete", "/cards/#{card.id}?_method=delete&_csrf=#{csrf_token}", class: "btn btn-danger btn-xs", onclick: "return confirm('Are you sure?');") -%>
+</p>
